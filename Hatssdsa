@@ -1,0 +1,61 @@
+
+CREATE DATABASE Gallery;
+
+
+USE Gallery;
+
+
+CREATE TABLE Users (
+  UserID INT,
+  UserName VARCHAR(50),
+  DateCreated DATE
+);
+
+
+INSERT INTO Users (UserID, UserName, DateCreated)
+VALUES
+  (1, 'sparsley0', '2019-02-19'),
+  (2, 'dsumshon1', '2018-12-24'),
+  (3, 'hpointing2', '2018-12-11'),
+  (4, 'smannagh3', '2018-08-05'),
+  (5, 'gsatrsmore4', '2018-07-09'),
+  (6, 'dzuann5', '2019-01-09');
+
+
+CREATE TABLE Pictures (
+  PictureID INT,
+  FileName VARCHAR(100),
+  UserID INT,
+  DateCreated DATE
+);
+
+
+INSERT INTO Pictures (PictureID, FileName, UserID, DateCreated)
+VALUES
+  (1001, 'laptop.jpeg', 3, '2019-02-07'),
+  (1002, 'sti_orca.jpeg', 7, '2019-09-04'),
+  (1003, 'home.jepeg', 5, '2019-02-16'),
+  (1004, 'bsit.jpeg', 1, '2019-10-19');
+
+
+
+
+SELECT u.UserName, p.FileName
+FROM Users u
+INNER JOIN Pictures p ON u.UserID = p.UserID;
+
+
+SELECT u.UserName, p.FileName
+FROM Users u
+LEFT JOIN Pictures p ON u.UserID = p.UserID;
+
+
+SELECT u.UserName, p.FileName
+FROM Users u
+RIGHT JOIN Pictures p ON u.UserID = p.UserID;
+
+
+SELECT u.UserName, p.FileName
+FROM Users u
+FULL OUTER JOIN Pictures p ON u.UserID = p.UserID
+WHERE u.UserID IS NOT NULL AND p.UserID IS NOT NULL;
